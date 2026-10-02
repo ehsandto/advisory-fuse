@@ -17,7 +17,9 @@ GitHub HTTPS, upstream repository ownership and advisory correctness are assumpt
 
 Arming closes a gate before nondeterministic calls. Bad hashes, unsupported ranges,
 insufficient prose, uncertain impact and malformed responses cannot open it. Exact
-validator disagreement rejects resolution, retaining the already-closed scan state.
+validator report disagreement produces a negative vote. The network's majority
+rule can still accept a report with some dissent; unanimity is not enforced. Failure
+to obtain consensus retains the already-closed scan state.
 A known blocked impact dominates uncertainty in other advisories. No owner reset
 exists. Clearing a trip requires two fresh consensus-clean scans within the TTL,
 spaced at least 60 seconds apart. A failed abandoned scan resets recovery on rearm.

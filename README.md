@@ -4,6 +4,15 @@ A reusable, evidence-grounded software advisory circuit breaker for GenLayer.
 Immutable artifact configuration; independently interpreted public advisories;
 latched trips; two-observation recovery. **Not another graph or certificate.**
 
+## Live StudioNet deployment
+
+[Final contract](https://explorer-studio.genlayer.com/address/0x3886d8aAfb14772546951136022d63c23aED5ebb).
+[17 finalized transactions](LIVE_PROOFS.md): 15 successful executions and two
+intentional rejection proofs. [Proof matrix](docs/proof-matrix.md).
+32 direct/unit/adversarial tests and GenVM lint/SDK validation pass.
+The deployed source is byte-equal after documented line-ending normalization.
+[Submission fields and evidence](SUBMISSION.md).
+
 ## Problem
 
 A manifest version number does not tell a consumer what a disclosed vulnerability
@@ -60,8 +69,9 @@ manifest match, package identity, version membership, semantic vector, scan ID,
 observation time, policy root and deterministic report root. There is no confidence
 tolerance. The deterministic transition reconstructs the decision from the vector.
 
-Disagreement rejects the transaction; it is not recorded as an agreed semantic
-finding. The already-armed gate remains closed. Direct tests run leader logic only;
+Each differing validator votes against that report. The network uses majority
+consensus, not contract-enforced unanimity. If consensus fails, resolution does not
+apply and the already-armed gate remains closed. Direct tests run leader logic only;
 live receipt tests are required to assess actual consensus behavior.
 
 ## Consumer API

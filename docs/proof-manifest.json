@@ -1,0 +1,31 @@
+{
+  "network": "studionet",
+  "address": "0x3886d8aAfb14772546951136022d63c23aED5ebb",
+  "source_sha256": "d886940b895eaf90463399fbcf5d0735a4c773e0e8616b2c051773d1e67c86bc",
+  "watchdog": "0x948B4141547457D99f319AA5Cf072EB8C7e5f5aa",
+  "transactions": [
+    {"label":"Final deployment","hash":"0x9da045d9f9c3251393a50c6294eea7fd676ebf79379270522bb804f4f2be08a9","execution":"SUCCESS"},
+    {"label":"Register affected manifest","hash":"0x73a582dd601ab41cbe947fccf6503daf7bec2c67e2d16a74d7d59e2ced67e257","execution":"SUCCESS"},
+    {"label":"Arm affected scan","hash":"0x5f3a4f67504a54cbb9a6e2a533b6138e0fbe0305d560b735647f6673f9494a85","execution":"SUCCESS"},
+    {"label":"Semantic execution-risk trip","hash":"0x21620167b1bfc9926a228d354a06a7bc83eedf94cde505ef584b2b578639659e","execution":"SUCCESS"},
+    {"label":"Register patched manifest","hash":"0x906cb054131eea60a98cd562de047ce9ac95d87ef6ed5fe63a83e64255f28a7d","execution":"SUCCESS"},
+    {"label":"Arm patched scan","hash":"0xbe5d2056d68db2a651e9579e3eb388ef6a8597685450be692efdefa057ec524c","execution":"SUCCESS"},
+    {"label":"Patched-version clean result","hash":"0xc552c0388b866403a2651b354e876aed84e38ca54e743363b7c070d7a7d311d6","execution":"SUCCESS"},
+    {"label":"Register availability-only policy","hash":"0x7761fdda34031e3e4fed03c83f72b0dd2dad5173574ba67af9bba0d8def1169f","execution":"SUCCESS"},
+    {"label":"Arm policy contrast","hash":"0x8f061d899e3871a2be4749b7087c507423e7fc4f63eb2abddde9ab9370bec6f1","execution":"SUCCESS"},
+    {"label":"Semantic policy contrast","hash":"0x16d2c666a8df368502a261ef96804a7c259545087022a61030bc81350e868651","execution":"SUCCESS"},
+    {"label":"Register intentionally wrong commitment","hash":"0x7e1a3266a8145967d76555cbba251991f972062b206e71b6ccf7792e92a8f3f1","execution":"SUCCESS"},
+    {"label":"Arm wrong-commitment scan","hash":"0xde8e972491f462c4e7d4743de5f2e02fca04f887865b41244ca5b7845b4a447a","execution":"SUCCESS"},
+    {"label":"Wrong commitment fails closed","hash":"0xeead024ae669942df7f265bc87a2ce7c4367f5507e1da2996eeaa7a840a6b1a6","execution":"SUCCESS"},
+    {"label":"New random watchdog arms existing fuse","hash":"0x9fdfac33c05c4a8a8c14eaffcfc5e56e3e6606aef5dfcdd706a76fcd03783298","execution":"SUCCESS","sender":"0x948B4141547457D99f319AA5Cf072EB8C7e5f5aa"},
+    {"label":"New watchdog independently rescans; trip persists","hash":"0x403da1f82f81cde010776c10f622958ea054c9aa41ce229640c0c200f9836e34","execution":"SUCCESS","sender":"0x948B4141547457D99f319AA5Cf072EB8C7e5f5aa"},
+    {"label":"Reused scan ID rejected","hash":"0x18323ff0bcc136bedb0993637826618a1bbb39165ff844ed8a4be98e1e13a185","execution":"ERROR","sender":"0x948B4141547457D99f319AA5Cf072EB8C7e5f5aa"},
+    {"label":"Wrong-fuse/nonpending scan resolution rejected","hash":"0xf501fa7de94176ac4cc59a269b23da444ad667e36cf58db3f5374bf29bfb0bf9","execution":"ERROR","sender":"0x948B4141547457D99f319AA5Cf072EB8C7e5f5aa"}
+  ],
+  "fuses": [
+    {"id":"legacy","scan":"scan2","state":"TRIPPED","latched":true,"decision":"TRIP","manifest_match":true,"membership":"AFFECTED","impact":"EXECUTION","root":"17909ab4f7b270f6e9fb983f90aa75385cf36fb1d336af8113e0113146fd62fa","history":[{"scan":"scan1","root":"2ba461a4b7dcd4ee3982a37dd4cf58dac4d917ea487b24e79c1790fdd937a936"}]},
+    {"id":"patched","state":"OPEN","latched":false,"decision":"CLEAN","manifest_match":true,"membership":"UNAFFECTED","impact":"UNKNOWN","root":"f7fc3454bd539229da2a704d70c036290d1f8cfc47e201fdd356f5cec53df5fb"},
+    {"id":"availability-policy","state":"OPEN","latched":false,"decision":"CLEAN","manifest_match":true,"membership":"AFFECTED","impact":"EXECUTION","root":"c9e1e74ff1d2178740b0b238f7559f330c1cd015cd5cb07c2834f5351c6c8a5a"},
+    {"id":"bad-commitment","state":"HELD","latched":false,"decision":"UNKNOWN","manifest_match":false,"membership":"UNKNOWN","impact":"UNKNOWN","root":"db03aff58b69cdbb12819fc06c044a7518468a1ab51f61a0fba518f631555abc"}
+  ]
+}
