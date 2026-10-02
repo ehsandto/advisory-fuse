@@ -102,7 +102,7 @@ def fuse_decision(records, blocked):
 
 
 def report_matches(candidate, independent):
-    return isinstance(candidate, dict) and candidate == independent
+    return isinstance(candidate, dict) and canonical(candidate) == canonical(independent)
 
 
 def transition(current, decision, timestamp):
@@ -259,6 +259,9 @@ class AdvisoryFuse(gl.Contract):
 
         report = gl.vm.run_nondet_unsafe(acquire, validate)
         # Consensus is not a substitute for deterministic consistency validation.
+        payload = {key: value for key, value in report.items() if key != "root"}
+        if digest(payload) != report["root"]:
+            raise gl.vm.UserError("[EXPECTED] inconsistent evidence root")
         expected = fuse_decision(report["advisories"], spec["blocked"]) if report["package"] else "UNKNOWN"
         if report["decision"] != expected or report["fuse"] != fuse_id or report["scan"] != scan_id:
             raise gl.vm.UserError("[EXPECTED] contradictory or substituted consensus report")

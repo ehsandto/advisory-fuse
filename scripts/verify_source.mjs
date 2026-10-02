@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import './rpc_read_retry.cjs';
 import crypto from 'node:crypto';
 const address = process.argv[2];
 if (!/^0x[0-9a-fA-F]{40}$/.test(address ?? '')) throw Error('Contract address required');

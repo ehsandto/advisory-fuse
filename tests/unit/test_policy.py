@@ -1,6 +1,7 @@
 import ast
 from pathlib import Path
 import re
+import json
 import pytest
 
 
@@ -8,8 +9,8 @@ def policy():
     module = ast.parse(Path("contracts/AdvisoryFuse.py").read_text(encoding="utf8"))
     nodes = [node for node in module.body if isinstance(node, (ast.FunctionDef, ast.Assign)) and
              (isinstance(node, ast.Assign) or node.name in
-              ("version", "affected", "normalize_semantics", "fuse_decision", "report_matches", "transition"))]
-    ns = {"re": re}
+              ("version", "affected", "normalize_semantics", "fuse_decision", "report_matches", "transition", "canonical"))]
+    ns = {"re": re, "json": json}
     exec(compile(ast.Module(body=nodes, type_ignores=[]), "policy", "exec"), ns)
     return ns
 
@@ -56,3 +57,9 @@ def test_decision_is_reconstructed_not_supplied_by_ai():
     assert p["fuse_decision"](records, ["EXECUTION"]) == "TRIP"
     assert p["fuse_decision"](records, ["DISCLOSURE"]) == "UNKNOWN"
     assert p["fuse_decision"]([], ["EXECUTION"]) == "UNKNOWN"
+
+
+@pytest.mark.parametrize("replacement", [1, 1.0, "true"])
+def test_boolean_integer_type_substitution_is_not_equivalent(replacement):
+    equal = policy()["report_matches"]
+    assert not equal({"manifest_match": replacement}, {"manifest_match": True})
