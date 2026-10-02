@@ -1,0 +1,13 @@
+.tooldeps/
+node_modules/
+.pytest_cache/
+__pycache__/
+*.pyc
+.gltest_cache/
+.env
+.env.*
+*.key
+*.pem
+*.keystore
+.password*
+*.log

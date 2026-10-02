@@ -1,0 +1,8 @@
+{
+  "name": "advisory-fuse",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"verify:live": "node --require ./scripts/rpc_read_retry.cjs scripts/verify_live.mjs"},
+  "dependencies": {"genlayer-js": "1.1.8"}
+}
